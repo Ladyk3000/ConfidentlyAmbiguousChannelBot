@@ -5,7 +5,25 @@ from Repository.Prompter import Prompter
 from Repository.ChatGPT import ChatGPT
 from Repository.TgBot import TgBot
 from Repository.Timer import Timer
-from background import keep_alive
+
+from flask import Flask
+from threading import Thread
+
+app = Flask('')
+
+
+@app.route('/')
+def home():
+    return "I'm alive"
+
+
+def run():
+    app.run(host='0.0.0.0', port=80)
+
+
+def keep_alive():
+    t = Thread(target=run)
+    t.start()
 
 
 def main():
@@ -15,7 +33,6 @@ def main():
     bot = TgBot()
     timer = Timer()
     keep_alive()
-
     while True:
         if timer.should_post():
             if timer.is_get_theme_time() and scraper.has_not_theme:
