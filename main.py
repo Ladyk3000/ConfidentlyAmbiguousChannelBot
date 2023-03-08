@@ -5,6 +5,7 @@ from Repository.Prompter import Prompter
 from Repository.ChatGPT import ChatGPT
 from Repository.TgBot import TgBot
 from Repository.Timer import Timer
+from background import keep_alive
 
 
 def main():
@@ -13,6 +14,7 @@ def main():
     gpt = ChatGPT()
     bot = TgBot()
     timer = Timer()
+    keep_alive()
 
     while True:
         if timer.should_post():
