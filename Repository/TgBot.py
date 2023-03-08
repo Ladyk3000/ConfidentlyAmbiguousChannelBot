@@ -1,11 +1,11 @@
 import telebot
-
-
-import config
+import os
+from dotenv import load_dotenv
+load_dotenv()
 
 
 class TgBot:
-    def __init__(self, token=config.TG_API_TOKEN, channel=config.TG_CHANNEL):
+    def __init__(self, token=os.getenv('TG_API_TOKEN'), channel=os.getenv('TG_CHANNEL')):
         self.__bot = telebot.TeleBot(token)
         self.__channel = channel
 

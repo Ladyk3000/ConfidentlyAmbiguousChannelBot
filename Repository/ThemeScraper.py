@@ -2,15 +2,15 @@ import requests
 from bs4 import BeautifulSoup
 import random
 
-import config
-
 
 class ThemeScraper:
-    def __init__(self, src_url=config.THEME_SOURCE_URL):
+    def __init__(self, src_url='https://www.denvistorii.ru/'):
         self.__src_url = src_url
         self.__event_class = 'masonry-item'
         self.__event_end = 'Читать полностью'
         self.__events = []
+        self.__theme = None
+        self.has_not_theme = True
 
     def __get_events(self) -> None:
         try:
@@ -30,4 +30,6 @@ class ThemeScraper:
         return themes
 
     def get_theme(self):
-        return random.choice(self.__get_themes())
+        self.has_not_theme = False
+        self.__theme = random.choice(self.__get_themes())
+        return self.__theme
