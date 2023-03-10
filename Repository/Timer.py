@@ -43,6 +43,7 @@ class Timer:
         return False
 
     def is_post_time(self):
+        print(self.__post_time)
         if self.__is_greater_than_now(self.__post_time) and self.posted_today < self.__day_post_count:
             return True
         return False
