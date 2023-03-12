@@ -34,9 +34,11 @@ def main():
     timer = Timer()
     keep_alive()
     while True:
+        bot.send_alive()
         if timer.should_post():
             if timer.is_get_theme_time() and scraper.has_not_theme:
                 theme = scraper.get_theme()
+                bot.send_theme(theme)
                 query = prompter.generate_query(theme)
                 post = gpt.get_post(theme, query)
             if timer.is_post_time():
