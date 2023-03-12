@@ -34,8 +34,9 @@ def main():
     timer = Timer()
     keep_alive()
     while True:
-        bot.send_alive()
+        # bot.send_alive()
         if timer.should_post():
+            print(21123)
             if timer.is_get_theme_time() and scraper.has_not_theme:
                 theme = scraper.get_theme()
                 bot.send_theme(theme)

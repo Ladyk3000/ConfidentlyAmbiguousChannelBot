@@ -1,10 +1,14 @@
 import requests
 from bs4 import BeautifulSoup
 import random
+import telebot
+import os
+from dotenv import load_dotenv
 
+load_dotenv()
 
 class ThemeScraper:
-    def __init__(self, src_url='https://www.denvistorii.ru/'):
+    def __init__(self, src_url=os.getenv('SOURCE_URL')):
         self.__src_url = src_url
         self.__event_class = 'masonry-item'
         self.__event_end = 'Читать полностью'

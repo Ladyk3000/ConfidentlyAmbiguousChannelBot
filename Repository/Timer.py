@@ -33,27 +33,18 @@ class Timer:
 
     @staticmethod
     def __is_greater_than_now(eq_time: datetime) -> bool:
-        if datetime.datetime.now() > eq_time:
-            return True
-        return False
+        return datetime.datetime.now() < eq_time
 
     def is_get_theme_time(self):
-        if self.__is_greater_than_now(self.__theme_time):
-            return True
-        return False
+        return not self.__is_greater_than_now(self.__theme_time)
 
     def is_post_time(self):
-        print(self.__post_time)
-        if self.__is_greater_than_now(self.__post_time) and self.posted_today < self.__day_post_count:
-            return True
-        return False
-
+        return self.__is_greater_than_now(self.__post_time) and self.posted_today < self.__day_post_count
+      
     def should_post(self):
         self.__get_posted_today()
-        if self.posted_today < self.__day_post_count:
-            return True
-        return False
+        return self.posted_today < self.__day_post_count
 
     def __get_posted_today(self):
-        if self.posted_today > 0 and self.__is_greater_than_now(self.__theme_time) == False:
+        if not self.posted_today > 0 and self.__is_greater_than_now(self.__theme_time):
             self.posted_today = 0
